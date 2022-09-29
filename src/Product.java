@@ -56,7 +56,7 @@ public class Product {
         }
     }
 
-    public void printInfo() {
+    public void printInfo(int costumer) {
         System.out.println("=> 0. Main Menu");
         System.out.println("\t ---------------------------------------- ");
         System.out.println("\t |  Item No.  |   Item Name   |  Price  | ");
@@ -75,8 +75,11 @@ public class Product {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.print("\nPlace Your Order >>> ");
-        order = sc.nextInt();
+        if (costumer == 0) {
+            System.out.print("\nPlace Your Order >>> ");
+            order = sc.nextInt();
+        }
+        
     }
     public int getOrder() {
         return order;
@@ -86,12 +89,12 @@ public class Product {
         int line = 0;
         String currentLint;
 
-        String temFile = "DataStock.txt";
+        String tempFile = "temp.txt";
         File oldFile = new File(filepath);
-        File newFile = new File(temFile);
+        File newFile = new File(tempFile);
 
         try {
-            FileWriter fw = new FileWriter(temFile, true);
+            FileWriter fw = new FileWriter(tempFile, true);
             BufferedWriter bw = new BufferedWriter(fw);
             PrintWriter pw = new PrintWriter(bw);
 
