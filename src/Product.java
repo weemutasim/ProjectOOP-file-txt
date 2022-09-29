@@ -2,6 +2,7 @@ import java.util.*;
 import java.io.*;
 
 public class Product {
+    private int delete;
     String item_no;
     String item_name;
     String price;
@@ -54,6 +55,7 @@ public class Product {
             e.printStackTrace();
         }
     }
+
     public void printInfo() {
         System.out.println("=> 0. Main Menu");
         System.out.println("\t ---------------------------------------- ");
@@ -78,5 +80,42 @@ public class Product {
     }
     public int getOrder() {
         return order;
+    }
+
+    public void removeData(String filepath, int deleteLine) {
+        int line = 0;
+        String currentLint;
+
+        String temFile = "DataStock.txt";
+        File oldFile = new File(filepath);
+        File newFile = new File(temFile);
+
+        try {
+            FileWriter fw = new FileWriter(temFile, true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter pw = new PrintWriter(bw);
+
+            FileReader fr = new FileReader(filepath);
+            BufferedReader br = new BufferedReader(fr);
+
+            while ((currentLint = br.readLine()) != null) {
+                line++;
+                if (deleteLine != line) {
+                    pw.println(currentLint);
+                }
+            }
+            pw.flush();
+            pw.close();
+            fr.close();
+            br.close();
+            bw.close();
+            fw.close();
+
+            oldFile.delete();
+            File dump = new File(filepath);
+            newFile.renameTo(dump);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
