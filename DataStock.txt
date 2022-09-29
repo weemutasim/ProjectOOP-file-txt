@@ -1,0 +1,10 @@
+5,Americano,120.23
+6,Latte,100.67
+1,Cappuccino,720.83
+9,Espresso,70.23
+2,Irish,70.23
+3,Affogato,60.23
+4,Mochachino,520.29
+7,Macchiato,35.13
+8,Flat White,20.13
+10,Carameal,120.56
