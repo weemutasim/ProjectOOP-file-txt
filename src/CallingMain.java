@@ -3,7 +3,7 @@ import java.util.*;
 public class CallingMain {
     public static void main(String arv[]) {
         // clear the output Screen
-        System.out.print("\033[H\033[2J");
+        //System.out.print("\033[H\033[2J");
 
         Scanner rk = new Scanner(System.in);
         Admin am = new Admin(rk);
@@ -21,7 +21,7 @@ public class CallingMain {
             }
             switch (am.getSelect()) {
                 case 1:
-                pd.printInfo();
+                    pd.printInfo();
                     break;
                 case 2:
                     am.loginMain();
@@ -38,7 +38,9 @@ public class CallingMain {
                                     pd.addCoffee();
                                     break;
                                 case 3:
-
+                                    System.out.print("Delete Item >>> ");
+                                    int delete = rk.nextInt();
+                                    pd.removeData("DataStock.txt", delete);
                                     break;
                                 case 4:
                                     pd.getInfo();
