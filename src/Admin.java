@@ -24,13 +24,6 @@ public class Admin {
         }
     }
 
-    /*public void setUser(String username) {
-        this.username = username;
-    }
-    public void setPass(String password) {
-        this.password = password;
-    }*/
-
     public String getPass() {
         return password;
     }
@@ -54,9 +47,10 @@ public class Admin {
         System.out.println("\n>>>> Admin Panel <<<<");
         System.out.println("1. Total Cash Today");
         System.out.println("2. Add Coffee Item");
-        System.out.println("3. Delete Item");
-        System.out.println("4. Item List");
-        System.out.println("5. Order Preview");
+        System.out.println("3. Update Coffee Item");
+        System.out.println("4. Delete Item");
+        System.out.println("5. Item List");
+        System.out.println("6. Order Preview");
         System.out.println("0. Main Menu");
         System.out.print("\nEnter Your From 1-0 >> ");
         slmenu = sc.nextInt();
