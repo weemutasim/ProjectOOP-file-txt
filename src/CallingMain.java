@@ -38,15 +38,6 @@ public class CallingMain {
                                     pd.addCoffee();
                                     break;
                                 case 3:
-                                    pd.printInfo(1);    //admin 0, costumer 1
-                                    System.out.print("\nDelete Item >> ");
-                                    int delete = rk.nextInt();
-                                    pd.removeData("DataStock.txt", delete);
-                                    break;
-                                case 4:
-                                    pd.printInfo(1);
-                                    break;
-                                case 5:
                                     System.out.print("\nEdit Item >> ");
                                     String search_id = rk.next();
                                     System.out.print("Enter edit name >> ");
@@ -54,6 +45,18 @@ public class CallingMain {
                                     System.out.print("Enter edit price >> ");
                                     String new_price = rk.next();
                                     pd.editData("DataStock.txt", search_id, new_name, new_price);
+                                    break;
+                                case 4:
+                                    pd.printInfo(1);    //admin 0, costumer 1
+                                    System.out.print("\nDelete Item >> ");
+                                    int delete = rk.nextInt();
+                                    pd.removeData("DataStock.txt", delete);
+                                    break;
+                                case 5:
+                                    pd.printInfo(1);
+                                    break;
+                                case 6:
+                                
                                     break;
                                 case 0:
                                     break;
