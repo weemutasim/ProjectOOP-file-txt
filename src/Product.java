@@ -2,7 +2,6 @@ import java.util.*;
 import java.io.*;
 
 public class Product {
-    private int delete;
     String item_no;
     String item_name;
     String price;
@@ -85,12 +84,12 @@ public class Product {
         return order;
     }
 
-    public void removeData(String filepath, int deleteLine) {
+    public void removeData(String file, int deleteLine) {
         int line = 0;
         String currentLint;
 
         String tempFile = "temp.txt";
-        File oldFile = new File(filepath);
+        File oldFile = new File(file);
         File newFile = new File(tempFile);
 
         try {
@@ -98,7 +97,7 @@ public class Product {
             BufferedWriter bw = new BufferedWriter(fw);
             PrintWriter pw = new PrintWriter(bw);
 
-            FileReader fr = new FileReader(filepath);
+            FileReader fr = new FileReader(file);
             BufferedReader br = new BufferedReader(fr);
 
             while ((currentLint = br.readLine()) != null) {
@@ -115,7 +114,45 @@ public class Product {
             fw.close();
 
             oldFile.delete();
-            File dump = new File(filepath);
+            File dump = new File(file);
+            newFile.renameTo(dump);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void editData(String file, String editID, String new_name, String new_price) {
+        String old_id = "";
+        String old_name = "";
+        String old_price = "";
+        String tempFile = "temp.txt";
+        File oldFile = new File(file);
+        File newFile = new File(tempFile);
+
+        try {
+            FileWriter fw = new FileWriter(tempFile, true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter pw = new PrintWriter(bw);
+            sc = new Scanner(new File(file));
+            sc.useDelimiter("[,\n]");
+
+            while (sc.hasNext()) {
+                old_id = sc.next();
+                old_name = sc.next();
+                old_price = sc.next();
+
+                if (old_id.equals(editID)) {
+                    pw.println(old_id +","+new_name +","+ new_price);
+                } else {
+                    pw.print(old_id +","+ old_name +","+ old_price);
+                }
+            }
+            sc.close();
+            pw.flush();
+            pw.close();
+
+            oldFile.delete();
+            File dump = new File(file);
             newFile.renameTo(dump);
         } catch (Exception e) {
             e.printStackTrace();

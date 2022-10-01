@@ -10,7 +10,7 @@ public class CallingMain {
         Product pd = new Product(rk);
 
         String password;
-        password = "123456";
+        password = "123";
 
         // Callining Mainmenu Class function
         while (true) {
@@ -31,7 +31,7 @@ public class CallingMain {
                             am.printMenu();
                             switch (am.getSlmenu()) {
                                 case 1:
-
+                                    
                                     break;
                                 case 2:
                                     pd.getInfo();
@@ -47,6 +47,13 @@ public class CallingMain {
                                     pd.printInfo(1);
                                     break;
                                 case 5:
+                                    System.out.print("\nEdit Item >> ");
+                                    String search_id = rk.next();
+                                    System.out.print("Enter edit name >> ");
+                                    String new_name = rk.next();
+                                    System.out.print("Enter edit price >> ");
+                                    String new_price = rk.next();
+                                    pd.editData("DataStock.txt", search_id, new_name, new_price);
                                     break;
                                 case 0:
                                     break;

@@ -14,7 +14,7 @@ public class Admin {
             System.out.print("Please Enter Password or ( 1 to Back in Main Menu ) : ");
             password = sc.next();
             int pass = Integer.parseInt(password);
-            if (pass == 123456) {
+            if (pass == 123) {
                 break;
             }else if (pass == 1) {
                 break;
@@ -23,15 +23,18 @@ public class Admin {
             }
         }
     }
+
     /*public void setUser(String username) {
         this.username = username;
     }
     public void setPass(String password) {
         this.password = password;
     }*/
+
     public String getPass() {
         return password;
     }
+
     public void printWelcome() {
         //System.out.print("\033[H\033[2J");
         System.out.println("\nWELCOME TO COFFEE SHOP SYSTEM\n");
@@ -41,9 +44,11 @@ public class Admin {
         System.out.print("\nplease select >> ");
         select = sc.nextInt();
     }
+    
     public int getSelect() {
         return select;
     }
+
     public void printMenu() {
         //System.out.print("\033[H\033[2J");
         System.out.println("\n>>>> Admin Panel <<<<");
@@ -56,6 +61,7 @@ public class Admin {
         System.out.print("\nEnter Your From 1-0 >> ");
         slmenu = sc.nextInt();
     }
+
     public int getSlmenu() {
         return slmenu;
     }
