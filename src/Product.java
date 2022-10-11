@@ -1,4 +1,5 @@
 import java.util.*;
+import javax.swing.*;
 import java.io.*;
 
 public class Product {
@@ -55,13 +56,13 @@ public class Product {
         }
     }
 
-    public void printInfo(int costumer) {
+    public void printInfo(String file, int admin) {
         System.out.println("=> 0. Main Menu");
         System.out.println("\t ---------------------------------------- ");
         System.out.println("\t |  Item No.  |   Item Name   |  Price  | ");
         System.out.println("\t ---------------------------------------- ");
         try {
-            BufferedReader read = new BufferedReader(new FileReader("DataStock.txt"));
+            BufferedReader read = new BufferedReader(new FileReader(file));
             String message = "";
             while ((message = read.readLine()) != null) {
                 String[] data = message.split(",");
@@ -74,10 +75,11 @@ public class Product {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        if (costumer == 0) {
-            System.out.print("\nPlace Your Order >>> ");
-            order = sc.nextInt();
+        if (admin == 1) {
+            System.out.print("\nPress Enter to Continue...");
+            sc.nextLine();
         }
+        
         
     }
     public int getOrder() {
@@ -158,4 +160,56 @@ public class Product {
             e.printStackTrace();
         }
     }
+
+    /*public void searchData(String file) { //String file
+        String line = "";
+        System.out.print("\nPlace Your Order >>> ");
+        String message = sc.next();
+        try {
+            FileInputStream fin = new FileInputStream(file);
+            Scanner scan = new Scanner(fin);
+            scan.useDelimiter("[,\n]");
+            while (scan.hasNextLine()) {
+                String[] data = line.split(",");
+                line = scan.nextLine();
+                if (line.startsWith(message)) {
+                    System.out.println(data[0]+ "\t"+ data[1]+ "\t"+ Double.parseDouble(data[2]));
+                } 
+
+            }    
+            scan.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }*/
+
+    public void searchData(String file, String searchID) {
+        boolean found = false;
+        String id = "";
+        String name = "";
+        String price = "";
+
+        try {
+            sc = new Scanner(new File(file));
+            sc.useDelimiter("[,\n]");
+
+            while (sc.hasNext() && !found) {
+                id = sc.next();
+                name = sc.next();
+                price = sc.next();
+
+                if (id.equals(searchID)) {
+                    found = true;
+                }
+            }
+            if (found) {
+                System.out.println("ID: "+id+ "\tName: "+ name +"\tPrice: "+ price);
+            } else {
+                System.out.println("Record not found!");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
+
