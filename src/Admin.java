@@ -1,12 +1,19 @@
 import java.util.Scanner;
 
 public class Admin {
-    String password;
-    int select, slmenu;
+    private String password;
+    private int select;
+    private int select_menu;
     Scanner sc;
 
-    public Admin(Scanner rk) {
-        sc=rk;
+    //Default constructor
+    public Admin() {
+
+    }
+
+    //Overloading Method
+    public Admin(Scanner sc) {
+        this.sc = sc;
     }
 
     public void loginMain() {
@@ -24,8 +31,28 @@ public class Admin {
         }
     }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setSelect(int select) {
+        this.select = select;
+    }
+
+    public void setSelectMenu(int select_menu) {
+        this.select_menu = select_menu;
+    }
+
     public String getPass() {
         return password;
+    }
+
+    public int getSelect() {
+            return select;
+    }
+
+    public int getSelectMenu() {
+        return select_menu;
     }
 
     public void printWelcome() {
@@ -37,11 +64,6 @@ public class Admin {
         System.out.println("\t>> 3. Exit");
         System.out.println("     ---------------------------------");
         System.out.print("\tplease select >> ");
-        select = sc.nextInt();
-    }
-    
-    public int getSelect() {
-        return select;
     }
 
     public void printMenu() {
@@ -57,30 +79,5 @@ public class Admin {
         System.out.println("\t0. Main Menu");
         System.out.println("     -------------------------");
         System.out.print("\tEnter Your From 1-0 >> ");
-        slmenu = sc.nextInt();
     }
-
-    public int getSlmenu() {
-        return slmenu;
-    }
-
-    /*public static void arrayList(String file) {
-        ArrayList<Coffee> cf = new ArrayList<>();
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(file));
-            String line = br.readLine();
-            while ((line = br.readLine()) != null) {
-                String[] split = line.split(",");
-                cf.add(new Coffee(split[0], Double.parseDouble(split[1])));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void arraySearcher(String coffee) {
-        for (int i = 0; i < cf.size; i++) {
-            
-        }
-    }*/
 }

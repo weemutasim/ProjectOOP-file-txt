@@ -5,33 +5,48 @@ public class CallingMain {
         //clear the output Screen
         //System.out.print("\033[H\033[2J");
 
-        Scanner rk = new Scanner(System.in);
-        Admin am = new Admin(rk);
-        Product pd = new Product(rk);
+        Scanner sc = new Scanner(System.in);
+        Admin am = new Admin(sc);
+        Product pd = new Product(sc);
         Pay py = new Pay();
+        Add_Data ad = new Add_Data(sc);
+        Delete_Data dld = new Delete_Data();
+        Edit_data edd = new Edit_data();
+        Search_Data sd = new Search_Data();
 
-        String password;
+        final String password;
         password = "123";
 
         // Calling Main Class function
         while (true) {
-            am.printWelcome();
             if (am.getSelect() == 3) {
                 System.out.println("THANKS");
                 break;
             }
+            am.printWelcome();
+            am.setSelect(sc.nextInt());
             switch (am.getSelect()) {
                 case 1:
-                    pd.printInfo("DataStock.txt", 0);
-                    System.out.print("\nPlace Your Order >>> ");
-                    String messageID = rk.next();
-                    pd.searchData("DataStock.txt", messageID);
-
-                    System.out.println("Enter amount of product : ");
-                    py.setAmount(rk.nextInt());
-                    System.out.println("Enter amount of paid : ");
-                    py.setPaid(rk.nextInt());
-
+                    while (true) {
+                        pd.printInfo("DataStock.txt", 0);
+                        System.out.print("\nPlace Your Order >>> ");
+                        String messageID = sc.next();
+                        int m_ID = Integer.parseInt(messageID);
+                        int cancel = sd.searchData("DataStock.txt", messageID);
+                        if (m_ID == 0 || cancel == 1) {
+                            break;         
+                        }
+                        System.out.print("Enter Item Quantity : ");
+                        pd.setQuantity(sc.nextInt());
+                        sd.confirmOrder();
+                        sd.setConfirm(sc.nextInt());
+                        if (sd.getConfirm() == 1) {
+                            System.out.print("Enter amount of product : ");
+                            py.setAmount(sc.nextInt());
+                            System.out.print("Enter amount of paid : ");
+                            py.setPaid(sc.nextInt());
+                        }
+                    }
                     break;
                 case 2:
                     am.loginMain();
@@ -40,32 +55,40 @@ public class CallingMain {
                         System.out.println("       Access Granted! Welcome!");
                         do {
                             am.printMenu();
-                            switch (am.getSlmenu()) {
+                            am.setSelectMenu(sc.nextInt());
+                            switch (am.getSelectMenu()) {
                                 case 1:
                                     //pd.searchData(password, 0);
                                     break;
                                 case 2:
-                                    pd.getInfo();
-                                    pd.addCoffee();
+                                    //pd.getInfo();
+                                    System.out.print("Enter Item No. >>> ");
+                                    ad.setItem_no(sc.next());
+                                    System.out.print("Enter Name >>> ");
+                                    ad.setItem_name(sc.next());
+                                    System.out.print("Enter Price >>> ");
+                                    ad.setPrice(sc.next());
+                                    ad.addCoffee("DataStock.txt");
+                                    sc.nextLine();
                                     break;
                                 case 3:
                                     System.out.print("\nEdit Item >> ");
-                                    String search_id = rk.next();
+                                    String search_id = sc.next();
                                     System.out.print("Enter edit name >> ");
-                                    String new_name = rk.next();
+                                    String new_name = sc.next();
                                     System.out.print("Enter edit price >> ");
-                                    String new_price = rk.next();
-                                    pd.editData("DataStock.txt", search_id, new_name, new_price);
+                                    String new_price = sc.next();
+                                    edd.editData("DataStock.txt", search_id, new_name, new_price);
                                     break;
                                 case 4:
                                     pd.printInfo("DataStock.txt", 0);
                                     System.out.print("\nDelete Item >> ");
-                                    int delete = rk.nextInt();
-                                    pd.removeData("DataStock.txt", delete);
+                                    int delete = sc.nextInt();
+                                    dld.removeData("DataStock.txt", delete);
                                     break;
                                 case 5:
                                     pd.printInfo("DataStock.txt", 1);
-                                    rk.nextLine();
+                                    sc.nextLine();
                                     break;
                                 case 6:
                                 
@@ -76,9 +99,11 @@ public class CallingMain {
                                     System.out.println("Invalid!");
                                     break;
                             }
-                        } while (am.getSlmenu() != 0);
+                        } while (am.getSelectMenu() != 0);
                     }
                     break;
+                    case 3:
+                        break;
                 default:
                     System.out.println("Invalid!");
                     break;
