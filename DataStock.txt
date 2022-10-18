@@ -1,11 +1,14 @@
-1,Americano,120.23
-2,Latte,100.67
-3,Cappuccino,720.83
-4,Espresso,70.23
-5,Irish,70.23
-6,Affogato,60.23
-7,Mochachino,520.29
-8,Macchiato,35.13
-9,Flat White,20.13
-10,Carameal,120.56
-11,Green,85.63
+1,Americano,120
+2,Latte,100
+3,Cappuccino,720
+4,Espresso,70
+5,Irish,70
+6,Affogato,60
+7,Mochachino,520
+8,Macchiato,35
+9,Flat White,20
+10,Caramel,120
+11,Green,85
+12,wee,23
+13,min,23
+14,err,45

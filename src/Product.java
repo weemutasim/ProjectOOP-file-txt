@@ -4,7 +4,6 @@ public class Product {
     private String item_no;
     private String item_name;
     private String price;
-    private int quantity;
 
     Scanner sc;
 
@@ -30,14 +29,6 @@ public class Product {
         this.price = price;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
     public String getItem_no() {
         return item_no;
     }
@@ -51,7 +42,8 @@ public class Product {
     }
 
     public void printInfo(String file, int admin) {
-        System.out.println("=> 0. Main Menu");
+        //System.out.print("\033[H\033[2J");
+        System.out.println("\n=> 0. Main Menu");
         System.out.println("\t ---------------------------------------- ");
         System.out.println("\t |  Item No.  |   Item Name   |  Price  | ");
         System.out.println("\t ---------------------------------------- ");
@@ -61,7 +53,7 @@ public class Product {
             while ((message = read.readLine()) != null) {
                 String[] data = message.split(",");
                 //System.out.println(Arrays.toString(data));
-                System.out.printf("\t\t%s\t%s\t%s\n", data[0], data[1], data[2]);
+                System.out.printf("\t\t%s\t%-10s\t%5s\n", data[0], data[1], data[2]);
             }
             read.close();
         } catch (FileNotFoundException e) {
@@ -69,6 +61,7 @@ public class Product {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        System.out.println("\t ---------------------------------------- ");
         if (admin == 1) {
             System.out.print("\nPress Enter to Continue...");
             sc.nextLine();

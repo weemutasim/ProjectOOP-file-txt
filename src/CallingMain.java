@@ -29,22 +29,29 @@ public class CallingMain {
                 case 1:
                     while (true) {
                         pd.printInfo("DataStock.txt", 0);
-                        System.out.print("\nPlace Your Order >>> ");
+                        System.out.print("\n\tPlace Your Order >>> ");
                         String messageID = sc.next();
                         int m_ID = Integer.parseInt(messageID);
                         int cancel = sd.searchData("DataStock.txt", messageID);
                         if (m_ID == 0 || cancel == 1) {
-                            break;         
+                            break;
                         }
-                        System.out.print("Enter Item Quantity : ");
-                        pd.setQuantity(sc.nextInt());
+                        System.out.print("\t\tEnter Item Quantity : ");
+                        py.setQuantity(sc.nextInt());
+                        System.out.println("\n     -------------------------------------------------");
                         sd.confirmOrder();
                         sd.setConfirm(sc.nextInt());
-                        if (sd.getConfirm() == 1) {
-                            System.out.print("Enter amount of product : ");
-                            py.setAmount(sc.nextInt());
-                            System.out.print("Enter amount of paid : ");
+                        if (sd.getConfirm() == 1 && sd.getConfirm() <= 2) {
+                            System.out.println("\n     -------------------------------------------------");
+                            System.out.print("\t\tEnter amount of price : ");
+                            py.setPrice(sc.nextInt());
+                            System.out.print("\t\tEnter amount of paid : ");
                             py.setPaid(sc.nextInt());
+                            System.out.println("\n     -------------------------------------------------");
+                            System.out.printf("\tTotal price : %d Baht\n", py.calQuantity());
+                            System.out.printf("\tChange money total : %d Baht\n", py.calChange());
+                        } else {
+                            System.out.println("Invalid!");
                         }
                     }
                     break;
@@ -58,7 +65,7 @@ public class CallingMain {
                             am.setSelectMenu(sc.nextInt());
                             switch (am.getSelectMenu()) {
                                 case 1:
-                                    //pd.searchData(password, 0);
+                                    py.totalCash();
                                     break;
                                 case 2:
                                     //pd.getInfo();
